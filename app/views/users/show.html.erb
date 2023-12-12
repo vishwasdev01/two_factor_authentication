@@ -1,0 +1,38 @@
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="mb-4">Welcome to Your App</h1>
+
+      <% if @user.nil? %>
+        <div class="alert alert-info">
+          <p>
+            Please
+            <%= link_to 'Log In', login_path %>
+            <%= link_to 'Sign up', signup_path %>
+          </p>
+        </div>
+      <% else %>
+        <div class="card mt-4">
+          <div class="card-body">
+            <h2>Hello, <%= @user.email %>!</h2>
+
+            <% if @user.otp_enabled %>
+              <p>Your account is secured with OTP.</p>
+              <br>
+              <span class="badge badge-success">OTP Enabled</span>
+              <br>
+              <%= link_to 'Disable 2 factor authentication', disable_2fa_path, class: 'btn btn-primary' %>
+            <% else %>
+              <p>Your account is not yet secured with OTP.</p>
+                <br>
+                <%= link_to 'Enable 2 factor authentication', enable_2fa_path, class: 'btn btn-primary' %>
+                <br>
+            <% end %>
+
+            <%= link_to 'Log Out', logout_path %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

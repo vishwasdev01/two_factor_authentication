@@ -1,0 +1,11 @@
+<h1>Enter OTP</h1>
+
+<%= form_tag(verify_otp_path, method: :post) do %>
+  <% if flash[:error].present? %>
+    <p class="flash-error"><%= flash[:error] %></p>
+  <% end %>
+
+  <label for="otp">OTP:</label>
+  <%= text_field_tag :otp %>
+  <%= submit_tag "Verify OTP" %>
+<% end %>
